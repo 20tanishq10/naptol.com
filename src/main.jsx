@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ArrowUp, ArrowDown, Check, Share2, Sparkles, Trophy, X } from "lucide-react";
+import "./styles.css";
 
 const MAX = 6;
 
