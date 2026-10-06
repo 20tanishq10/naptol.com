@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Yatra+One&display=swap');
+
+:root{
+  font-family:'DM Sans',sans-serif;
+  color:#fff9ec;
+  background:#24351d;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility
+}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+
+.page{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  padding:20px 4.5vw 24px;
+  background:#24351d url('/market-bg.png') center/cover fixed;
+}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.08;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E")}
+.shade{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(8,14,8,.18),rgba(8,14,8,.08) 34%,rgba(8,13,7,.54) 100%),
+    radial-gradient(ellipse at 50% 46%,rgba(7,13,8,.03) 0 25%,rgba(7,13,8,.38) 82%)
+}
+header,.hero,.game-wrap,footer{position:relative;z-index:2}
+
+header{
+  max-width:1240px;margin:auto;display:flex;align-items:center;justify-content:space-between
+}
+.mini-logo{
+  display:flex;flex-direction:column;line-height:.76;transform:rotate(-2deg);
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))
+}
+.mini-logo span{font-family:'Yatra One',serif;font-size:31px;text-shadow:2px 2px 0 rgba(42,28,17,.5)}
+.mini-logo small{font-size:8px;letter-spacing:4px;font-weight:900;color:#ffd45a;margin:8px 0 0 16px}
+nav{display:flex;gap:9px}
+nav button{
+  border:1px solid rgba(255,244,207,.18);
+  background:rgba(20,29,16,.24);
+  backdrop-filter:blur(12px);
+  color:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  display:flex;gap:6px;align-items:center;
+  font-size:12px;font-weight:800;
+  text-shadow:0 2px 6px rgba(0,0,0,.4)
+}
+nav button:hover{background:rgba(255,255,255,.13)}
+
+.hero{text-align:center;margin:30px auto 8px}
+.eyebrow{
+  display:inline-flex;gap:7px;align-items:center;padding:7px 12px;
+  border:1px solid rgba(255,244,207,.27);
+  background:rgba(29,35,18,.24);
+  backdrop-filter:blur(9px);border-radius:999px;
+  text-transform:uppercase;letter-spacing:2px;font-size:9px;font-weight:900;color:#ffe6a3
+}
+.hero-logo{
+  display:inline-flex;flex-direction:column;align-items:center;
+  filter:drop-shadow(0 8px 9px rgba(0,0,0,.3))
+}
+.hero-logo>div{
+  font-family:'Yatra One',serif;
+  font-size:clamp(65px,8vw,112px);
+  line-height:.79;letter-spacing:-5px;color:#fff9ed;
+  text-shadow:4px 6px 0 rgba(54,34,19,.5)
+}
+.hero-logo small{
+  margin-top:16px;background:#f3c34e;color:#2b391e;
+  padding:7px 38px 8px 44px;font-size:13px;font-weight:900;
+  letter-spacing:8px;box-shadow:0 5px 0 rgba(98,56,18,.24);
+  transform:rotate(-1deg)
+}
+.hero p{margin:13px 0 0;font-size:13px;font-weight:800;text-shadow:0 3px 8px rgba(0,0,0,.55)}
+
+.game-wrap{
+  width:min(980px,100%);margin:15px auto 0;position:relative;
+  display:flex;justify-content:center
+}
+.side-note{
+  position:absolute;top:92px;width:94px;color:#ffe6a6;
+  text-shadow:0 2px 7px rgba(0,0,0,.5);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:.85
+}
+.side-note span{font-size:10px;display:block;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:6px;margin-bottom:8px}
+.side-note b{font-size:12px;line-height:1.15}
+.left-note{left:2%;transform:rotate(-5deg)}
+.right-note{right:2%;transform:rotate(5deg);text-align:right}
+
+/* The main UI is intentionally dark/glass, so the market art stays visible. */
+.game-card{
+  width:min(520px,calc(100vw - 30px));
+  position:relative;
+  overflow:hidden;
+  padding:15px 18px 17px;
+  border:1px solid rgba(255,246,216,.22);
+  border-radius:32px;
+  background:
+    linear-gradient(145deg,rgba(31,43,25,.82),rgba(19,28,18,.68));
+  color:#fff8e9;
+  box-shadow:
+    0 32px 90px rgba(4,9,4,.48),
+    0 0 0 1px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(16px) saturate(1.08)
+}
+.game-card:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 16% 10%,rgba(255,214,112,.13),transparent 25%),
+    radial-gradient(circle at 88% 55%,rgba(92,128,62,.12),transparent 31%),
+    linear-gradient(125deg,transparent 45%,rgba(255,255,255,.04));
+}
+.card-head,.product-stage,.product-copy,.price-zone,.guess-track,.latest,.history,.result{position:relative;z-index:1}
+.card-head{display:flex;justify-content:space-between;align-items:center}
+.attempt-label{font-size:11px;letter-spacing:1.4px;font-weight:900;color:#d7d2c4}
+.attempt-label b{font-size:16px;color:#fff;margin-left:4px}
+.attempt-label em{font-style:normal;color:#817f73}
+.tiny-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e7b84d;margin-right:6px;box-shadow:0 0 0 4px rgba(231,184,77,.12)}
+.today-pill{
+  display:flex;gap:5px;align-items:center;border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.07);padding:7px 10px;border-radius:999px;
+  font-size:9px;font-weight:900;letter-spacing:.6px;color:#e6e0cf
+}
+
+.product-stage{
+  height:250px;margin:2px -4px 0;display:grid;place-items:center;position:relative
+}
+.stage-ring{
+  position:absolute;width:215px;height:215px;border-radius:50%;
+  background:
+    radial-gradient(circle,rgba(255,248,224,.13) 0 40%,rgba(255,229,163,.09) 41% 63%,rgba(0,0,0,0) 64%),
+    conic-gradient(from 25deg,rgba(243,195,78,.32),rgba(255,255,255,.03),rgba(243,195,78,.18),rgba(255,255,255,.02),rgba(243,195,78,.32));
+  box-shadow:0 0 50px rgba(243,195,78,.08),inset 0 0 30px rgba(255,255,255,.04);
+  transform:rotate(-8deg)
+}
+.product-stage:after{
+  content:"";position:absolute;bottom:25px;width:270px;height:18px;border-radius:50%;
+  background:rgba(0,0,0,.34);filter:blur(12px)
+}
+.product-image{position:relative;z-index:2;width:280px;height:225px;display:grid;place-items:center}
+.product-image img{width:255px;height:220px;object-fit:contain;filter:drop-shadow(0 20px 18px rgba(0,0,0,.34))}
+.image-fallback{font-size:10px;letter-spacing:2px;font-weight:900;color:#c9c4b5}
+.stamp{
+  position:absolute;z-index:4;left:28px;top:32px;
+  border:2px solid #e7b84d;color:#e7b84d;border-radius:50%;
+  width:68px;height:68px;display:grid;place-items:center;text-align:center;
+  font-size:8px;font-weight:900;line-height:1.05;transform:rotate(-13deg);
+  background:rgba(24,32,18,.58);box-shadow:0 8px 18px rgba(0,0,0,.18)
+}
+.stamp b{font-size:10px}
+.quantity-tag{
+  position:absolute;right:20px;bottom:28px;background:#f3c34e;color:#26371f;
+  border-radius:6px;padding:6px 10px;font-size:10px;font-weight:900;
+  letter-spacing:1px;transform:rotate(3deg);box-shadow:4px 4px 0 rgba(0,0,0,.18)
+}
+
+.product-copy{text-align:center;padding:0 14px}
+.category{font-size:8px;text-transform:uppercase;letter-spacing:2.5px;color:#f0c76a;font-weight:900}
+.product-copy h1{font-size:19px;line-height:1.18;margin:5px auto 3px;max-width:410px;color:#fff8e9}
+.product-copy p{margin:0;color:#bdb9ad;font-size:11px;font-weight:700}
+
+.price-zone{
+  margin-top:13px;padding:12px 12px 10px;border-radius:19px;
+  background:rgba(8,14,8,.62);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 25px rgba(0,0,0,.2);color:#fff8e9
+}
+.question-mark{
+  position:absolute;right:18px;top:6px;font-family:'Yatra One';
+  font-size:28px;color:#d7a83f;opacity:.4;transform:rotate(9deg)
+}
+.guess-form{display:grid;grid-template-columns:1fr 112px;gap:8px}
+.price-input{
+  height:51px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.18);
+  border-radius:11px;background:rgba(255,255,255,.08);overflow:hidden
+}
+.price-input span{padding:0 13px;color:#f2d88e;font-size:18px;font-weight:900;border-right:1px solid rgba(255,255,255,.12)}
+.price-input input{min-width:0;flex:1;height:100%;border:0;outline:0;background:transparent;color:white;padding:0 12px;font-size:16px;font-weight:800}
+.price-input input::placeholder{color:rgba(255,255,255,.55)}
+.guess-form>button{
+  border:0;border-radius:11px;background:#f3c34e;color:#26371f;font-size:13px;
+  font-weight:900;display:flex;justify-content:center;align-items:center;gap:6px;transition:.15s
+}
+.guess-form>button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 5px 0 rgba(109,67,21,.25)}
+.guess-form>button:disabled{opacity:.45;cursor:not-allowed}
+.hint{text-align:center;font-size:9px;color:#aeb7a5;margin-top:7px;letter-spacing:.5px}
+
+.guess-track{display:flex;justify-content:center;gap:9px;margin:13px 0 0}
+.dot{width:11px;height:11px;border-radius:50%;background:#65685f;box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+.dot.low.heat-1,.dot.high.heat-1{background:#f3b39c}.dot.low.heat-2,.dot.high.heat-2{background:#ed9073}
+.dot.low.heat-3,.dot.high.heat-3{background:#df684a}.dot.low.heat-4,.dot.high.heat-4{background:#ca4b31}.dot.low.heat-5,.dot.high.heat-5{background:#a83420}.dot.correct{background:#77a85b}
+.latest{
+  display:grid;grid-template-columns:auto 1fr 58px;align-items:center;gap:10px;
+  margin-top:11px;padding:9px 10px;border-radius:13px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)
+}
+.latest-price{font-size:15px;font-weight:900}.latest-message{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800}
+.latest.low .latest-message,.latest.high .latest-message{color:#f08a69}.latest.correct .latest-message{color:#8dc36d}
+.proximity{height:7px;border-radius:999px;background:#575b51}
+.proximity.heat-1{background:#f3b39c}.proximity.heat-2{background:#ed9073}.proximity.heat-3{background:#df684a}.proximity.heat-4{background:#ca4b31}.proximity.heat-5{background:#a83420}
+.history{display:grid;gap:4px;margin-top:7px}.history-row{display:flex;justify-content:space-between;padding:5px 9px;font-size:9px;color:#aaa99f}.history-row span{font-weight:900}.history-row .low,.history-row .high{color:#f08a69}.history-row .correct{color:#8dc36d}
+.result{
+  margin-top:10px;display:flex;justify-content:space-between;align-items:center;
+  border-radius:14px;padding:10px 11px;border:1px solid rgba(255,255,255,.08)
+}
+.result.win{background:rgba(92,132,71,.23);color:#b9dda8}.result.lose{background:rgba(164,70,45,.22);color:#ffc0ae}
+.result-copy small{display:block;font-size:9px;font-weight:800}.result-copy strong{display:block;font-size:20px;margin-top:1px}
+.result button{border:0;background:rgba(255,255,255,.1);border-radius:9px;padding:8px 10px;color:inherit;font-size:10px;font-weight:900;display:flex;gap:5px;align-items:center}
+.shake{animation:shake .42s ease}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
+
+footer{display:flex;justify-content:center;align-items:center;gap:8px;margin:13px auto 0;font-size:9px;color:#fff3d1;text-shadow:0 2px 7px rgba(0,0,0,.5)}
+footer i{font-style:normal;color:#f1c95a}
+
+.modal-backdrop{position:fixed;inset:0;z-index:20;background:rgba(5,11,6,.68);display:grid;place-items:center;padding:18px;backdrop-filter:blur(7px)}
+.modal{width:min(420px,100%);position:relative;background:#1f2c1b;color:#fff7e6;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:26px;box-shadow:0 35px 90px rgba(0,0,0,.5)}
+.modal-kicker{text-transform:uppercase;letter-spacing:2px;color:#e4b850;font-size:9px;font-weight:900}
+.modal h2{font-family:'Yatra One';font-size:35px;margin:3px 0 10px}
+.modal li{margin:8px 0;line-height:1.42;font-size:13px;color:#e7e3d8}
+.modal p{font-size:12px;color:#aaa99f;margin:17px 0 0}
+.close{position:absolute;right:10px;top:10px;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.09);color:#fff;display:grid;place-items:center}
+.loading{min-height:100vh;background:#26391f;color:#fff9e9;display:grid;place-items:center;align-content:center;gap:15px;font-weight:800}
+.loading-mark{font-family:'Yatra One';font-size:70px;line-height:.8;text-shadow:3px 4px 0 rgba(52,31,16,.5)}
+
+@media(max-width:700px){
+  .page{padding:15px 10px 18px;background-attachment:scroll;background-position:center top}
+  .mini-logo span{font-size:24px}.mini-logo small{font-size:7px}
+  .hero{margin-top:35px}.hero-logo>div{font-size:64px}
+  .hero-logo small{font-size:10px;padding:6px 24px 7px 30px;letter-spacing:6px}
+  .hero p{font-size:12px}.side-note{display:none}.game-wrap{margin-top:17px}
+  .game-card{width:min(455px,calc(100vw - 22px));padding:14px 15px 15px;border-radius:24px}
+  .product-stage{height:210px}.stage-ring{width:170px;height:170px}
+  .product-image img{width:210px;height:195px}.stamp{left:12px;top:27px;transform:scale(.88) rotate(-13deg)}
+  .quantity-tag{right:9px;bottom:24px}.product-copy h1{font-size:17px}
+  .guess-form{grid-template-columns:1fr 92px}.price-zone{padding:11px}
+  .latest{grid-template-columns:auto 1fr 45px}.hero-logo{margin-top:5px}
+  nav{gap:4px}nav button{padding:7px 8px;font-size:10px}
+}
