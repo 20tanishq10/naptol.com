@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { ArrowUp, ArrowDown, Check, Share2, Sparkles, Trophy, X } from "lucide-react";
+import { ArrowUp, ArrowDown, Check, Share2, Shuffle, Sparkles, Trophy, X } from "lucide-react";
 import "./styles.css";
 
-const MAX = 6;
+const MAX = 5;
 
 function todayKey() {
   return new Date().toISOString().slice(0, 10);
@@ -32,14 +32,24 @@ export default function App() {
   const [shake, setShake] = useState(false);
   const [showHow, setShowHow] = useState(false);
   const [shared, setShared] = useState(false);
+  const [mode, setMode] = useState("normal");
 
-  useEffect(() => {
-    fetch("/api/daily", { cache: "no-store" })
-      .then(r => r.json())
-      .then(setGame)
-      .catch(() => setGame({ error: true }))
-      .finally(() => setLoading(false));
-  }, []);
+  async function loadGame(random = false) {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/daily${random ? "?random=1" : ""}`, { cache: "no-store" });
+      setGame(await response.json());
+      setTries([]);
+      setGuess("");
+      setShared(false);
+    } catch {
+      setGame({ error: true });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { loadGame(); }, []);
 
   if (loading) {
     return (
@@ -74,7 +84,8 @@ export default function App() {
         date: game.date,
         source_product_id: game.product.source_product_id,
         guess: n,
-        attempt: tries.length + 1
+        attempt: tries.length + 1,
+        mode
       })
     });
 
@@ -122,14 +133,24 @@ export default function App() {
       <section className="hero">
         <div className="eyebrow"><Sparkles size={13} /> THE DAILY PRICE GAME</div>
         <div className="hero-logo"><div>नापतोल</div><small>NAAPTOL</small></div>
-        <p>Look at the product. Guess the price. You get six chances.</p>
+        <p>Look at the product. Guess the price. You get five chances.</p>
       </section>
 
       <main className="game-wrap">
+        <div className="game-controls" aria-label="Game controls">
+          <div className="mode-switch" role="group" aria-label="Game mode">
+            <button className={mode === "normal" ? "active" : ""} onClick={() => { setMode("normal"); setTries([]); setGuess(""); }}>Normal</button>
+            <button className={mode === "hard" ? "active hard" : ""} onClick={() => { setMode("hard"); setTries([]); setGuess(""); }}>Hard</button>
+          </div>
+          <button className="random-button" onClick={() => loadGame(true)} disabled={loading}>
+            <Shuffle size={14} /> Random
+          </button>
+        </div>
+
         <section className={`game-card ${shake ? "shake" : ""}`}>
           <div className="card-head">
-            <div className="attempt-label"><span className="tiny-dot" /> GUESS <b>{currentTry}</b><em>/ {MAX}</em></div>
-            <div className="today-pill"><Trophy size={13} /> TODAY'S CHALLENGE</div>
+            <div className="attempt-label"><span className="tiny-dot" /> LIFE <b>{currentTry}</b><em>/ {MAX}</em></div>
+            <div className="today-pill"><Trophy size={13} /> {game.random ? "RANDOM PRODUCT" : "TODAY'S CHALLENGE"}</div>
           </div>
 
           <div className="product-stage">
@@ -224,12 +245,12 @@ export default function App() {
             <ol>
               <li>A real product appears on screen.</li>
               <li>Guess its current selling price in ₹.</li>
-              <li>You get a total of <b>6 chances</b>.</li>
+              <li>You get a total of <b>5 chances</b>.</li>
               <li>Every guess tells you whether the price is <b>higher</b> or <b>lower</b>.</li>
               <li>The deeper the colour, the closer your guess.</li>
-              <li>A guess within the nearest ₹5 range counts as correct.</li>
+              <li>Normal mode accepts the nearest ₹5 range; Hard mode needs the exact price.</li>
             </ol>
-            <p>For example, if the actual price is ₹163, any guess from ₹160 to ₹165 wins.</p>
+            <p>Random gives you a fresh product without changing the selected mode.</p>
           </div>
         </div>
       )}

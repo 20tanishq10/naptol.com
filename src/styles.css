@@ -79,8 +79,16 @@ nav button:hover{background:rgba(255,255,255,.13)}
 
 .game-wrap{
   width:min(980px,100%);margin:15px auto 0;position:relative;
-  display:flex;justify-content:center
+  display:flex;flex-direction:column;align-items:center;justify-content:center
 }
+.game-controls{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px}
+.mode-switch{display:flex;padding:3px;border:1px solid rgba(255,244,207,.2);border-radius:999px;background:rgba(20,29,16,.35);backdrop-filter:blur(12px)}
+.mode-switch button,.random-button{border:0;color:#eee8d8;background:transparent;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;cursor:pointer}
+.mode-switch button.active{background:#f3c34e;color:#26371f;box-shadow:0 3px 0 rgba(98,56,18,.24)}
+.mode-switch button.active.hard{background:#db7255;color:#fff8ed}
+.random-button{display:flex;align-items:center;gap:6px;border:1px solid rgba(255,244,207,.2);background:rgba(20,29,16,.35);color:#fff8e9}
+.random-button:hover:not(:disabled){background:rgba(255,255,255,.14)}
+.random-button:disabled{opacity:.55;cursor:wait}
 .side-note{
   position:absolute;top:92px;width:94px;color:#ffe6a6;
   text-shadow:0 2px 7px rgba(0,0,0,.5);
@@ -232,6 +240,8 @@ footer i{font-style:normal;color:#f1c95a}
   .hero{margin-top:35px}.hero-logo>div{font-size:64px}
   .hero-logo small{font-size:10px;padding:6px 24px 7px 30px;letter-spacing:6px}
   .hero p{font-size:12px}.side-note{display:none}.game-wrap{margin-top:17px}
+  .game-controls{width:100%;justify-content:space-between;padding:0 3px}
+  .mode-switch button,.random-button{padding:7px 10px;font-size:10px}
   .game-card{width:min(455px,calc(100vw - 22px));padding:14px 15px 15px;border-radius:24px}
   .product-stage{height:210px}.stage-ring{width:170px;height:170px}
   .product-image img{width:210px;height:195px}.stamp{left:12px;top:27px;transform:scale(.88) rotate(-13deg)}
